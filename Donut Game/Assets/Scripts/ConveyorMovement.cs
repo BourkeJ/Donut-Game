@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConveyorMovement : MonoBehaviour
 {
-    [SerializeField] private Vector3 _velocity;
+    public Vector3 velocity;
 
     private Rigidbody _rigidBody;
     private Transform _transform;
@@ -19,6 +19,6 @@ public class ConveyorMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _transform.position -= _velocity;
+        _transform.position -= velocity;
     }
 }

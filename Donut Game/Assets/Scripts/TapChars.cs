@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TapChars : MonoBehaviour
 {
+    [SerializeField] private GameObject _instantiateDonut = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,11 @@ public class TapChars : MonoBehaviour
                 if (hit.collider.tag == "customer")
                 {
                     print("ya");
+                    GameObject donut = Instantiate(_instantiateDonut, _instantiateDonut.GetComponent<Transform>().position, Quaternion.identity);
+                    
+                    Vector3 donutPosition = donut.GetComponent<Transform>().position;
+                    //donut.GetComponent<Transform>().position = Vector3.Lerp(donutPosition, hit.collider.GetComponent<Transform>().position, 20f*Time.deltaTime);
+                    donut.rigidbody.velocity += hit.collider.GetComponent<Transform>().position;
                 }
             }
         }
