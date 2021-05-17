@@ -24,11 +24,13 @@ public class TapChars : MonoBehaviour
                 if (hit.collider.tag == "customer")
                 {
                     print("ya");
-                    GameObject donut = Instantiate(_instantiateDonut, _instantiateDonut.GetComponent<Transform>().position, Quaternion.identity);
+                    GameObject donut = Instantiate(_instantiateDonut, (_instantiateDonut.GetComponent<Transform>().position), Quaternion.identity);
                     
                     Vector3 donutPosition = donut.GetComponent<Transform>().position;
+                    donut.GetComponent<Rigidbody>().isKinematic = false;
                     //donut.GetComponent<Transform>().position = Vector3.Lerp(donutPosition, hit.collider.GetComponent<Transform>().position, 20f*Time.deltaTime);
-                    donut.rigidbody.velocity += hit.collider.GetComponent<Transform>().position;
+                    donut.GetComponent<Rigidbody>().velocity = (hit.collider.GetComponent<Transform>().position);
+                    print(donut.GetComponent<Rigidbody>().velocity);
                 }
             }
         }
