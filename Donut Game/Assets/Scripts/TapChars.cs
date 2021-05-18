@@ -5,6 +5,8 @@ using UnityEngine;
 public class TapChars : MonoBehaviour
 {
     [SerializeField] private GameObject _instantiateDonut = null;
+    [SerializeField] private float _velocity = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,7 @@ public class TapChars : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
+        {   
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
@@ -23,14 +25,16 @@ public class TapChars : MonoBehaviour
                 //Select stage    
                 if (hit.collider.tag == "customer")
                 {
-                    print("ya");
-                    GameObject donut = Instantiate(_instantiateDonut, (_instantiateDonut.GetComponent<Transform>().position), Quaternion.identity);
+                    //print("ya");
+                    GameObject donut = Instantiate(_instantiateDonut, (_instantiateDonut.GetComponent<Transform>().position + Vector3.up), Quaternion.identity);
                     
                     Vector3 donutPosition = donut.GetComponent<Transform>().position;
                     donut.GetComponent<Rigidbody>().isKinematic = false;
+                    donut.tag = "notNut";
                     //donut.GetComponent<Transform>().position = Vector3.Lerp(donutPosition, hit.collider.GetComponent<Transform>().position, 20f*Time.deltaTime);
-                    donut.GetComponent<Rigidbody>().velocity = (hit.collider.GetComponent<Transform>().position);
-                    print(donut.GetComponent<Rigidbody>().velocity);
+                    Vector3 direction = (hit.collider.GetComponent<Transform>().position - donutPosition).normalized;
+                    donut.GetComponent<Rigidbody>().velocity = direction * _velocity;
+                    //print(donut.GetComponent<Rigidbody>().velocity);
                 }
             }
         }
