@@ -24,13 +24,13 @@ public class CharLeave : MonoBehaviour
         {
             //_animator.SetBool("Good", true);
             _customerMaterial.SetColor("_Color", Color.white);
-            print("yayyyyyy");
+            //print("yayyyyyy");
         }
         else if(donut.GetComponent<Renderer>().material.color != _customerMaterial.color && _customerMaterial.color != Color.white && _customerMaterial.color != Color.black)
         {
             //_animator.SetBool("Bad", true);
             _customerMaterial.SetColor("_Color", Color.black);
-            print("ouchies");
+            //print("ouchies");
         }
     }
 }

@@ -23,7 +23,7 @@ public class TapChars : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 //Select stage    
-                if (hit.collider.tag == "customer")
+                if (hit.collider.tag == "customer" || hit.collider.tag == "throwBox")
                 {
                     //print("ya");
                     GameObject donut = Instantiate(_instantiateDonut, (_instantiateDonut.GetComponent<Transform>().position + Vector3.up), Quaternion.identity);
