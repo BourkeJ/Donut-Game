@@ -9,6 +9,7 @@ TagManager:
   - notNut
   - floor
   - throwBox
+  - donutBox
   layers:
   - Default
   - TransparentFX
